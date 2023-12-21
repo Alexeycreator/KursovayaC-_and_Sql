@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище course_work4Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="id_bank" />
+          </Key>
+          <Property Name="Account_number" Type="varchar" MaxLength="22" />
+          <Property Name="Name" Type="varchar" MaxLength="25" />
+          <Property Name="id_bank" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="Number_of_contract" />
+          </Key>
+          <Property Name="Number_of_contract" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date_of_contract" Type="date" />
+          <Property Name="Terms_of_an_agreement" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Account_number" Type="int" />
+          <Property Name="Product_id" Type="int" />
+          <Property Name="Supplier_id" Type="int" />
+          <Property Name="Customer_id" Type="int" />
+          <Property Name="Number_of_sclad" Type="int" />
+          <Property Name="Quntity_products" Type="int" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="25" />
+          <Property Name="Address" Type="varchar" MaxLength="25" />
+          <Property Name="Phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Date_of_receiving" Type="date" />
+          <Property Name="Number_of_sclad" Type="int" />
+          <Property Name="Number_of_contract" Type="int" />
+          <Property Name="Account_number" Type="varchar" MaxLength="22" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Container" Type="varchar" MaxLength="25" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="Quality_certificate" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Number_of_contract" Type="int" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="25" />
+          <Property Name="Address" Type="varchar" MaxLength="30" />
+          <Property Name="Phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Shipping_date" Type="date" />
+          <Property Name="Product_id" Type="int" />
+          <Property Name="Number_of_sclad" Type="int" />
+          <Property Name="Number_of_contract" Type="int" />
+          <Property Name="Account_number" Type="varchar" MaxLength="22" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "course_work4.dbo.View_InfoSclad" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_InfoSclad">
+          <Key>
+            <PropertyRef Name="Number_of_contract" />
+            <PropertyRef Name="Terms_of_an_agreement" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="Quality_certificate" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="PhoneSupplier" />
+          </Key>
+          <Property Name="Number_of_contract" Type="int" Nullable="false" />
+          <Property Name="Date_of_contract" Type="date" />
+          <Property Name="Terms_of_an_agreement" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="25" />
+          <Property Name="Account_number" Type="varchar" MaxLength="22" />
+          <Property Name="NameCustomer" Type="varchar" MaxLength="25" />
+          <Property Name="Address" Type="varchar" MaxLength="25" />
+          <Property Name="Phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Date_of_receiving" Type="date" />
+          <Property Name="Number_of_sclad" Type="int" />
+          <Property Name="NameProduct" Type="varchar" MaxLength="30" />
+          <Property Name="Container" Type="varchar" MaxLength="25" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="Quality_certificate" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Quntity_products" Type="int" />
+          <Property Name="NameSuplier" Type="varchar" MaxLength="25" />
+          <Property Name="AddressSupplier" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneSupplier" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Shipping_date" Type="date" />
+        </EntityType>
+        <Association Name="FK_Contract_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="id_bank" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Account_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище course_work4ModelContainer">
+          <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_InfoSclad" EntityType="Self.View_InfoSclad" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_InfoSclad].[Number_of_contract] AS [Number_of_contract], 
+    [View_InfoSclad].[Date_of_contract] AS [Date_of_contract], 
+    [View_InfoSclad].[Terms_of_an_agreement] AS [Terms_of_an_agreement], 
+    [View_InfoSclad].[Name] AS [Name], 
+    [View_InfoSclad].[Account_number] AS [Account_number], 
+    [View_InfoSclad].[NameCustomer] AS [NameCustomer], 
+    [View_InfoSclad].[Address] AS [Address], 
+    [View_InfoSclad].[Phone] AS [Phone], 
+    [View_InfoSclad].[Date_of_receiving] AS [Date_of_receiving], 
+    [View_InfoSclad].[Number_of_sclad] AS [Number_of_sclad], 
+    [View_InfoSclad].[NameProduct] AS [NameProduct], 
+    [View_InfoSclad].[Container] AS [Container], 
+    [View_InfoSclad].[Weight] AS [Weight], 
+    [View_InfoSclad].[Quality_certificate] AS [Quality_certificate], 
+    [View_InfoSclad].[Price] AS [Price], 
+    [View_InfoSclad].[Quntity_products] AS [Quntity_products], 
+    [View_InfoSclad].[NameSuplier] AS [NameSuplier], 
+    [View_InfoSclad].[AddressSupplier] AS [AddressSupplier], 
+    [View_InfoSclad].[PhoneSupplier] AS [PhoneSupplier], 
+    [View_InfoSclad].[Shipping_date] AS [Shipping_date]
+    FROM [dbo].[View_InfoSclad] AS [View_InfoSclad]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Contract_Bank" Association="Self.FK_Contract_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Customer" Association="Self.FK_Contract_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Product" Association="Self.FK_Contract_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Supplier" Association="Self.FK_Contract_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="course_work4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="id_bank" />
+          </Key>
+          <Property Name="Account_number" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="id_bank" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Bank" FromRole="Bank" ToRole="Contract" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="Number_of_contract" />
+          </Key>
+          <Property Name="Number_of_contract" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date_of_contract" Type="DateTime" Precision="0" />
+          <Property Name="Terms_of_an_agreement" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Account_number" Type="Int32" />
+          <Property Name="Product_id" Type="Int32" />
+          <Property Name="Supplier_id" Type="Int32" />
+          <Property Name="Customer_id" Type="Int32" />
+          <Property Name="Number_of_sclad" Type="Int32" />
+          <Property Name="Quntity_products" Type="Int32" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_Contract_Bank" FromRole="Contract" ToRole="Bank" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Contract_Customer" FromRole="Contract" ToRole="Customer" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Contract_Product" FromRole="Contract" ToRole="Product" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Contract_Supplier" FromRole="Contract" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_of_receiving" Type="DateTime" Precision="0" />
+          <Property Name="Number_of_sclad" Type="Int32" />
+          <Property Name="Number_of_contract" Type="Int32" />
+          <Property Name="Account_number" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Customer" FromRole="Customer" ToRole="Contract" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Container" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="Quality_certificate" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Number_of_contract" Type="Int32" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Product" FromRole="Product" ToRole="Contract" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Shipping_date" Type="DateTime" Precision="0" />
+          <Property Name="Product_id" Type="Int32" />
+          <Property Name="Number_of_sclad" Type="Int32" />
+          <Property Name="Number_of_contract" Type="Int32" />
+          <Property Name="Account_number" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Supplier" FromRole="Supplier" ToRole="Contract" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="View_InfoSclad">
+          <Key>
+            <PropertyRef Name="Number_of_contract" />
+            <PropertyRef Name="Terms_of_an_agreement" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="Quality_certificate" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="PhoneSupplier" />
+          </Key>
+          <Property Name="Number_of_contract" Type="Int32" Nullable="false" />
+          <Property Name="Date_of_contract" Type="DateTime" Precision="0" />
+          <Property Name="Terms_of_an_agreement" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Account_number" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Name="NameCustomer" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_of_receiving" Type="DateTime" Precision="0" />
+          <Property Name="Number_of_sclad" Type="Int32" />
+          <Property Name="NameProduct" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Container" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="Quality_certificate" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Quntity_products" Type="Int32" />
+          <Property Name="NameSuplier" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="AddressSupplier" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneSupplier" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Shipping_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_Contract_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="id_bank" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Account_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="course_work4Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bank" EntityType="Self.Bank" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="View_InfoSclad" EntityType="Self.View_InfoSclad" />
+          <AssociationSet Name="FK_Contract_Bank" Association="Self.FK_Contract_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Customer" Association="Self.FK_Contract_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Product" Association="Self.FK_Contract_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Supplier" Association="Self.FK_Contract_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище course_work4ModelContainer" CdmEntityContainer="course_work4Entities1">
+          <EntitySetMapping Name="Bank">
+            <EntityTypeMapping TypeName="course_work4Model.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="Account_number" ColumnName="Account_number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id_bank" ColumnName="id_bank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contract">
+            <EntityTypeMapping TypeName="course_work4Model.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="Number_of_contract" ColumnName="Number_of_contract" />
+                <ScalarProperty Name="Date_of_contract" ColumnName="Date_of_contract" />
+                <ScalarProperty Name="Terms_of_an_agreement" ColumnName="Terms_of_an_agreement" />
+                <ScalarProperty Name="Account_number" ColumnName="Account_number" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="Supplier_id" ColumnName="Supplier_id" />
+                <ScalarProperty Name="Customer_id" ColumnName="Customer_id" />
+                <ScalarProperty Name="Number_of_sclad" ColumnName="Number_of_sclad" />
+                <ScalarProperty Name="Quntity_products" ColumnName="Quntity_products" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="course_work4Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Date_of_receiving" ColumnName="Date_of_receiving" />
+                <ScalarProperty Name="Number_of_sclad" ColumnName="Number_of_sclad" />
+                <ScalarProperty Name="Number_of_contract" ColumnName="Number_of_contract" />
+                <ScalarProperty Name="Account_number" ColumnName="Account_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="course_work4Model.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Container" ColumnName="Container" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Quality_certificate" ColumnName="Quality_certificate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Number_of_contract" ColumnName="Number_of_contract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="course_work4Model.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Shipping_date" ColumnName="Shipping_date" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="Number_of_sclad" ColumnName="Number_of_sclad" />
+                <ScalarProperty Name="Number_of_contract" ColumnName="Number_of_contract" />
+                <ScalarProperty Name="Account_number" ColumnName="Account_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="course_work4Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_InfoSclad">
+            <EntityTypeMapping TypeName="course_work4Model.View_InfoSclad">
+              <MappingFragment StoreEntitySet="View_InfoSclad">
+                <ScalarProperty Name="Number_of_contract" ColumnName="Number_of_contract" />
+                <ScalarProperty Name="Date_of_contract" ColumnName="Date_of_contract" />
+                <ScalarProperty Name="Terms_of_an_agreement" ColumnName="Terms_of_an_agreement" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Account_number" ColumnName="Account_number" />
+                <ScalarProperty Name="NameCustomer" ColumnName="NameCustomer" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Date_of_receiving" ColumnName="Date_of_receiving" />
+                <ScalarProperty Name="Number_of_sclad" ColumnName="Number_of_sclad" />
+                <ScalarProperty Name="NameProduct" ColumnName="NameProduct" />
+                <ScalarProperty Name="Container" ColumnName="Container" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Quality_certificate" ColumnName="Quality_certificate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quntity_products" ColumnName="Quntity_products" />
+                <ScalarProperty Name="NameSuplier" ColumnName="NameSuplier" />
+                <ScalarProperty Name="AddressSupplier" ColumnName="AddressSupplier" />
+                <ScalarProperty Name="PhoneSupplier" ColumnName="PhoneSupplier" />
+                <ScalarProperty Name="Shipping_date" ColumnName="Shipping_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

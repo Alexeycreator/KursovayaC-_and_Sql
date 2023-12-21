@@ -1,0 +1,36 @@
+C:\Users\Алексей\source\repos\course_work4\course_work4\bin\Debug\course_work4.exe.config
+C:\Users\Алексей\source\repos\course_work4\course_work4\bin\Debug\course_work4.exe
+C:\Users\Алексей\source\repos\course_work4\course_work4\bin\Debug\course_work4.pdb
+C:\Users\Алексей\source\repos\course_work4\course_work4\obj\Debug\course_work4.csprojAssemblyReference.cache
+C:\Users\Алексей\source\repos\course_work4\course_work4\obj\Debug\course_work4.Authentication.resources
+C:\Users\Алексей\source\repos\course_work4\course_work4\obj\Debug\course_work4.MainForm.resources
+C:\Users\Алексей\source\repos\course_work4\course_work4\obj\Debug\course_work4.Properties.Resources.resources
+C:\Users\Алексей\source\repos\course_work4\course_work4\obj\Debug\course_work4.csproj.GenerateResource.cache
+C:\Users\Алексей\source\repos\course_work4\course_work4\obj\Debug\course_work4.csproj.CoreCompileInputs.cache
+C:\Users\Алексей\source\repos\course_work4\course_work4\obj\Debug\course_work4.exe
+C:\Users\Алексей\source\repos\course_work4\course_work4\obj\Debug\course_work4.pdb
+C:\Users\Алексей\source\repos\course_work4\course_work4\bin\Debug\EntityFramework.dll
+C:\Users\Алексей\source\repos\course_work4\course_work4\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Алексей\source\repos\course_work4\course_work4\bin\Debug\EntityFramework.xml
+C:\Users\Алексей\source\repos\course_work4\course_work4\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Алексей\source\repos\course_work4\course_work4\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Алексей\source\repos\course_work4\course_work4\obj\Debug\course_work4.csproj.CopyComplete
+C:\Users\Алексей\source\repos\course_work4\course_work4\obj\Debug\course_work4.EditingForm.resources
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\bin\Debug\course_work4.exe.config
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\bin\Debug\course_work4.exe
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\bin\Debug\course_work4.pdb
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\bin\Debug\EntityFramework.dll
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\bin\Debug\EntityFramework.SqlServer.dll
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\bin\Debug\EntityFramework.xml
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\bin\Debug\EntityFramework.SqlServer.xml
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\bin\Debug\ru\EntityFramework.resources.dll
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\obj\Debug\course_work4.csprojAssemblyReference.cache
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\obj\Debug\course_work4.Authentication.resources
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\obj\Debug\course_work4.EditingForm.resources
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\obj\Debug\course_work4.MainForm.resources
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\obj\Debug\course_work4.Properties.Resources.resources
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\obj\Debug\course_work4.csproj.GenerateResource.cache
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\obj\Debug\course_work4.csproj.CoreCompileInputs.cache
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\obj\Debug\course_work4.csproj.CopyComplete
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\obj\Debug\course_work4.exe
+D:\Алексей\Work\Курсовая(4 курс)\course_work4\course_work4\obj\Debug\course_work4.pdb
